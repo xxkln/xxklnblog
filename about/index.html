@@ -10,7 +10,7 @@
   
   <title>
     
-      xxkln&#39;s Blog
+      ABOUT | xxkln&#39;s Blog
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -137,93 +137,60 @@
   </div>
 </header>
 
-    <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
+    <div id="about-banner" style="background-image: url(http://file.muyutech.com/about.jpg)"></div>
+<div class="author">
+  <div class="head">
+    <img src="https://avatars3.githubusercontent.com/u/19296374?s=460&v=3">
+  </div>
+  <h3>xxkln</h3>
+  
+    <p class="description">This moment nap, you will have a dream. But this moment study, you will interpret a dream.</p>
+  
+  <section class="share-icons">
+    
+      <a class="icon-weibo" href="http://weibo.com/3807855479" target="_blank">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    
+    
+    
+      <a class="icon-github" href="https://github.com/xxkln" target="_blank">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    
+    
+    
+    
+        <a class="icon-douban" href="https://www.douban.com/people/158948115" target="_blank">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stack-1x fa-inverse">豆</i>
+            </span>
+        </a>
+    
+  </section>
 </div>
-<main class="app-body" id="archives">
-  
-  
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2018
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/posts/4a17b156.html" class="archive-title">Hello World</a>
-        <p class="archive-date">11-30</p>
-      </div>
-    
-  </div>
-</section>
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2017
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/posts/7f9837ee.html" class="archive-title">Chrome上 几个值得推荐的插件</a>
-        <p class="archive-date">05-14</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/posts/d973cb7c.html" class="archive-title">Hexo 在 GitHub 和 Coding 同时发布</a>
-        <p class="archive-date">03-04</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/posts/b3459307.html" class="archive-title">hexo 在 coding 上部署博客</a>
-        <p class="archive-date">03-04</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/posts/528ee353.html" class="archive-title">Hexo 编译时 JS 混乱解决方案</a>
-        <p class="archive-date">03-03</p>
-      </div>
-    
-  </div>
-</section>
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2016
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/posts/7e4c8da2.html" class="archive-title">利用hexo和github搭建博客（一）</a>
-        <p class="archive-date">12-16</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/posts/6c8e222d.html" class="archive-title">几个常见的 Git 代码托管平台</a>
-        <p class="archive-date">11-01</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/posts/dd07dd9c.html" class="archive-title">Git 代码托管</a>
-        <p class="archive-date">11-01</p>
-      </div>
-    
-  </div>
-</section>
-  
-</main>
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/archives/2018/11/index.html';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
+    $('.header').removeClass('fixed-header')
+    var windowH = $(window).height();
+    var author = $('.author')
+    var bodyH = author.offset().top + author[0].offsetHeight + 71;
+    if (bodyH < windowH) {
+      author.css({
+        'margin-bottom': windowH - bodyH
+      })
+    }
   })();
 </script>
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>

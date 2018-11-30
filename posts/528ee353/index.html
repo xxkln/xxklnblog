@@ -10,7 +10,7 @@
   
   <title>
     
-      hexo 在 coding 上部署博客 | xxkln&#39;s Blog
+      Hexo 编译时 JS 混乱解决方案 | xxkln&#39;s Blog
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -138,8 +138,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>hexo 在 coding 上部署博客</h2>
-  <p class="post-date">2017-03-04</p>
+  <h2>Hexo 编译时 JS 混乱解决方案</h2>
+  <p class="post-date">2017-03-03</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -147,13 +147,17 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>之前是在 GitHub 上部署的静态博客，由于 GitHub 属于国外网站，访问速度慢，听闻可以在 Coding 部署博客，故而转向 Coding。</p>
-<h3 id="1-Hexo-环境搭建"><a href="#1-Hexo-环境搭建" class="headerlink" title="1. Hexo 环境搭建"></a>1. Hexo 环境搭建</h3><p>Hexo 的环境搭建我之前在 GitHub 搭建博客教程中已经说明，不在赘述。也可到 Hexo 官网查看文档。</p>
-<h3 id="2-在-Coding-上新建项目"><a href="#2-在-Coding-上新建项目" class="headerlink" title="2. 在 Coding 上新建项目"></a>2. 在 Coding 上新建项目</h3><p>理论上项目名称没要求，但是在我实际操作中出现了引用资源未找到的问题。在引用路径上缺少了一个项目名。所以我的项目名和我的用户名一致，理由是如果项目名和用户名不一致，访问地址必须是 {user_name}.coding.me/{project_name}，如果项目名与用户名一致，可使用 {user_name}.coding.me 直接访问，也避免了上面说的资源引用问题，是我推荐的。<br>若有大神能解决资源引用问题用其他名字也是可行的。项目可私有，不影响访问。<br>选择项目，进入代码页面，选择 Pages 服务，部署来源后即可访问。</p>
+    <section class="markdown-content"><p>之前为在 GitHub 博客上写自己的 html 网页，在 hexo 根目录下的 source 文件夹中放了自己的 js 文件，每次 <code>hexo g</code> 后，pubic 文件夹中的 js 文件就混乱了，与自己实际 js 不一致。</p>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li><code>hexo g</code> 编译后在 public 文件夹中修改，将自己的 js 文件覆盖 hexo 编译后的 js 文件。或者 <code>hexo d</code> 提交到 GitHub 后直接到 GitHub 线上修改 js 文件。</li>
+<li>博客中的 js 引用使用外链的形式。如将 js 文件上传<a href="http://www.qiniu.com/" target="_blank" rel="noopener">七牛云</a>，引用七牛云上的 js。</li>
+<li>跳过 hexo 渲染【推荐】。<br>Hexo 3.0 以下使用：<br>在主目录下添加 README.md 文件或者 html 文件。<br>Hexo 3.0 以上支持：<br>修改 Hexo 主目录下的 _config.yml 配置文件中的 skip_render 参数。</li>
+</ol>
 <a id="more"></a>
-<h3 id="3-Hexo-Push"><a href="#3-Hexo-Push" class="headerlink" title="3. Hexo Push"></a>3. Hexo Push</h3><p>提交和在 GitHub 大致没什么区别，只需要在 Hexo 主目录的 _config.yml 配置文件中更改下仓库地址即可。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span> </span><br><span class="line"><span class="attr">    type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    repository:</span> <span class="attr">https://git.coding.net/&#123;user_name&#125;/&#123;project_name&#125;.git</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<p>提交玩后就可以访问查看效果了</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">skip_render:</span> <span class="string">"test.html"</span>    <span class="comment"># source 文件夹下指定文件</span></span><br><span class="line"></span><br><span class="line"><span class="attr">skip_render:</span> <span class="string">test/*</span>    <span class="comment"># 单个文件夹下全部文件</span></span><br><span class="line"></span><br><span class="line"><span class="attr">skip_render:</span> <span class="string">test/*.md</span>    <span class="comment"># 单个文件夹下指定类型文件</span></span><br><span class="line"></span><br><span class="line"><span class="attr">skip_render:</span> <span class="string">test/**</span>    <span class="comment"># 单个文件夹下全部文件及子文件</span></span><br><span class="line"></span><br><span class="line"><span class="attr">skip_render:</span>         <span class="comment"># 多个文件夹以及其他情况</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">test/*</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">test/*.html</span></span><br></pre></td></tr></table></figure>
+<p><em>注：若修改配置后不见效果，先执行 <code>hexo clean</code> 后再执行 <code>hexo g</code> 重新编译</em></p>
+<p><a href="https://segmentfault.com/q/1010000003957602/revision" target="_blank" rel="noopener">原文&gt;&gt;</a><br><a href="https://xuanwo.org/2014/08/14/hexo-usual-problem/" target="_blank" rel="noopener">Hexo 常见问题解决方案</a></p>
 </section>
     <!-- Tags START -->
     
@@ -164,10 +168,6 @@
     <span class="tag-code">Hexo</span>
   </a>
 
-  <a href="/tags#Coding">
-    <span class="tag-code">Coding</span>
-  </a>
-
       </div>
     
     <!-- Tags END -->
@@ -176,17 +176,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/posts/528ee353.html">
+      <a class="nav-left" href="/posts/7e4c8da2/">
         <span class="nav-arrow">← </span>
         
-          Hexo 编译时 JS 混乱解决方案
+          利用hexo和github搭建博客（一）
         
       </a>
     
     
-      <a class="nav-right" href="/posts/d973cb7c.html">
+      <a class="nav-right" href="/posts/b3459307/">
         
-          Hexo 在 GitHub 和 Coding 同时发布
+          hexo 在 coding 上部署博客
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -235,7 +235,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-Hexo-环境搭建"><span class="toc-nav-text">1. Hexo 环境搭建</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-在-Coding-上新建项目"><span class="toc-nav-text">2. 在 Coding 上新建项目</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-Hexo-Push"><span class="toc-nav-text">3. Hexo Push</span></a></li></ol>
+      <ol class="nav">none</ol>
     
   </div>
 </aside>
@@ -245,7 +245,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/posts/b3459307.html';
+    var url = 'http://yoursite.com/posts/528ee353/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -298,11 +298,11 @@
     });
 
     // gitment
-    var gitmentConfig = "xxkln@163.com";
+    var gitmentConfig = "xxkln";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "hexo 在 coding 上部署博客",
-        owner: "xxkln@163.com",
+        id: "Hexo 编译时 JS 混乱解决方案",
+        owner: "xxkln",
         repo: "xxkln.github.io",
         oauth: {
           client_id: "fa1b25885aa08763380c",
